@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <title><%= title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/predict">Predict</a></li>
+            <li><a href="/history">History</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="jumbotron text-center">
+    <h1>AutoML產品類別判斷結果</h1>
+    <p>使用Google Cloud AutoML Natural Language去學習GOMAJI產品資料</p>
+    <small><%= ip_addr %></small>
+</div>
+<div class="container">
+    <div class="list-group">
+        <% result.forEach((item) => { %>
+            <div class="row list-group-item">
+                <div class="progress">
+                    <div class="progress-bar list-group-item-text" role="progressbar" style="width: <%= (item.score * 100).toFixed(2) %>%;" aria-valuenow="<%= item.score %>" aria-valuemin="0" aria-valuemax="1"> <%= item.display %> (<%= ((item.score * 100).toFixed(2)) %>%) </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+
+</body>
+</html>
